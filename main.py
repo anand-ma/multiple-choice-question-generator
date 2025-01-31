@@ -69,7 +69,7 @@ if st.button("Generate"):
     if model == "GPT":
         # Create LLM chain using the prompt template and model
         question_gen_chain = few_shot_prompt | gpt_mini_model
-    elif model == "Gemini"
+    elif model == "Gemini":
         question_gen_chain = few_shot_prompt | gemini_model
     
     mcq = question_gen_chain.invoke({
