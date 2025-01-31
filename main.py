@@ -55,8 +55,6 @@ lang = st.text_input(
     disabled=False
 )
 
-
-
 if st.button("Generate"):
     mcq = question_gen_chain.invoke({
       "num" : number,
