@@ -40,13 +40,13 @@ st.subheader("Generates Multiple Choice questions with answers and explanation")
 topic = st.text_input(
     label="Topic",
     value="Tamil",
-    max_chars=15,
+    max_chars=50,
     type="default",
     placeholder="Type a topic to generate questions",
     disabled=False
 )
 
-number = st.number_input("Number of Questions", min_value = 1, max_value = 10, value = 1, step = 1)
+number = st.number_input("Number of Questions", min_value = 1, max_value = 20, value = 1, step = 1)
 
 lang = st.text_input(
     label="Language",
