@@ -10,7 +10,7 @@ os.environ['OPENAI_API_KEY'] = st.secrets['OPENAI_API_KEY']
 gpt_mini_model = ChatOpenAI(model_name="gpt-4o-mini")
 
 few_shot_template = """Give {num} question on the topic of {topic} in {lang}
-Follow the below example:
+Follow the below example and make topic bold and mention only once:
 Topic: Solar System
 
 Q: Which planet is known as the "Red Planet"?
