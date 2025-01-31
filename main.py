@@ -1,4 +1,4 @@
-# from langchain_openai import ChatOpenAI
+from langchain_openai import ChatOpenAI
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain import PromptTemplate
 from langchain import LLMChain
@@ -6,10 +6,10 @@ from langchain import LLMChain
 import streamlit as st
 import os
 
-# os.environ['OPENAI_API_KEY'] = st.secrets['OPENAI_API_KEY']
+os.environ['OPENAI_API_KEY'] = st.secrets['OPENAI_API_KEY']
 os.environ['GOOGLE_API_KEY'] = st.secrets['GOOGLE_API_KEY'] # comes from streamlit cloud from secrets
 
-# gpt_mini_model = ChatOpenAI(model_name="gpt-4o-mini")
+gpt_mini_model = ChatOpenAI(model_name="gpt-4o-mini")
 
 # Initialize Google's Gemini model
 gemini_model = ChatGoogleGenerativeAI(model = "gemini-1.5-flash-latest")
@@ -32,8 +32,7 @@ explanation: ...
 
 few_shot_prompt = PromptTemplate(template = few_shot_template, input_variables=['num','topic', 'lang'])
 
-# Create LLM chain using the prompt template and model
-question_gen_chain = few_shot_prompt | gemini_model
+
 
 
 # Frond End Code
@@ -41,6 +40,10 @@ question_gen_chain = few_shot_prompt | gemini_model
 st.header("Questions Generator 📚❓✍️")
 st.subheader("Generates Multiple Choice questions with answers and explanation")
 
+model = st.selectbox(
+    "Select AI Model",
+    ("Gemini", "GPT"),
+)
 
 topic = st.text_input(
     label="Topic",
@@ -62,6 +65,13 @@ lang = st.text_input(
 )
 
 if st.button("Generate"):
+
+    if model == "GPT":
+        # Create LLM chain using the prompt template and model
+        question_gen_chain = few_shot_prompt | gpt_mini_model
+    elif model == "Gemini"
+        question_gen_chain = few_shot_prompt | gemini_model
+    
     mcq = question_gen_chain.invoke({
       "num" : number,
       "topic" : topic,
