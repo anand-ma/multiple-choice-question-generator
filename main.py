@@ -5,9 +5,13 @@ from langchain import LLMChain
 import streamlit as st
 import os
 
-os.environ['OPENAI_API_KEY'] = st.secrets['OPENAI_API_KEY']
+# os.environ['OPENAI_API_KEY'] = st.secrets['OPENAI_API_KEY']
+os.environ['GOOGLE_API_KEY'] = st.secrets['GOOGLE_API_KEY'] # comes from streamlit cloud from secrets
 
-gpt_mini_model = ChatOpenAI(model_name="gpt-4o-mini")
+# gpt_mini_model = ChatOpenAI(model_name="gpt-4o-mini")
+
+# Initialize Google's Gemini model
+gemini_model = ChatGoogleGenerativeAI(model = "gemini-1.5-flash-latest")
 
 few_shot_template = """Give {num} question on the topic of {topic} in {lang}
 Follow the below example and make topic bold and mention only once:
@@ -28,7 +32,7 @@ explanation: ...
 few_shot_prompt = PromptTemplate(template = few_shot_template, input_variables=['num','topic', 'lang'])
 
 # Create LLM chain using the prompt template and model
-question_gen_chain = few_shot_prompt | gpt_mini_model
+question_gen_chain = few_shot_prompt | gemini_model
 
 
 # Frond End Code
