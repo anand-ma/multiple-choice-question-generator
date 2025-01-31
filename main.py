@@ -14,6 +14,7 @@ Follow the below example:
 Topic: Solar System
 
 Q: Which planet is known as the "Red Planet"?
+
 A) Venus
 B) Mars
 C) Jupiter
