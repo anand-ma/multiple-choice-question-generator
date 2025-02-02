@@ -16,7 +16,7 @@ gemini_model = ChatGoogleGenerativeAI(model = "gemini-1.5-flash-latest")
 
 few_shot_template = """Give {num} question on the topic of {topic} in {lang}
 Follow the below example and make topic bold and mention only once:
-Topic: Solar System
+**Topic: Solar System**
 
 Q: Which planet is known as the "Red Planet"?
 
@@ -25,9 +25,13 @@ B) Mars
 C) Jupiter
 D) Saturn
 
-Correct Answer: B
+<details>
+<summary>Show Answer</summary>
 
-explanation: ...
+**Correct Answer: B**
+
+**Explanation:** ...
+</details>
 """
 
 few_shot_prompt = PromptTemplate(template = few_shot_template, input_variables=['num','topic', 'lang'])
