@@ -81,4 +81,4 @@ if st.button("Generate"):
       "topic" : topic,
       "lang" : lang
     })
-    st.markdown(mcq.content)
+    st.markdown(mcq.content,unsafe_allow_html=True)
